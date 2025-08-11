@@ -86,32 +86,53 @@ export const DATA = {
   ],
   projects: [
     {
-      title: "Devconnect",
-      href: "https://github.com/abhi-yo/hyperlocal",
+      title: "Resume Generator",
+      href: "",
+      dates: "July, 2025",
+      active: true,
+      description:
+        "Professional resume generator that turns your GitHub into a polished LaTeX resume, top 6 on Peerlist with 140+ upvotes and 280+ unique visitors on website.",
+      technologies: [
+        "TypeScript",
+        "Next.js",
+        "GitHub",
+        "Tailwind CSS"
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://githubresume.vercel.app/",
+          icon: <Icons.globe className="size-3" />,
+        }
+      ],
+      image: "",
+      video: "/videos/resumegenerator.mp4",
+    },
+    {
+      
+      title: "Quilly",
+      href: "",
       dates: "April, 2025",
       active: true,
       description:
-        "A modern social platform for developers to connect, share ideas, and collaborate on projects. Features include GitHub OAuth integration, trending repositories section, and Dev.to/Reddit content integration.",
+        "A distraction-free writing platform with blockchain-powered copyright protection, built with Next.js and deployed on Polygon.",
       technologies: [
         "Next.js",
-        "React",
         "TailwindCSS",
-        "tRPC",
-        "Prisma",
-        "PostgreSQL",
-        "Redis",
+        "Solidity",
+        "MongoDB",
         "NextAuth.js",
         "TypeScript"
       ],
       links: [
           {
             type: "Website",
-            href: "https://devconnect-social.vercel.app",
+            href: "https://contentplatform.vercel.app/",
             icon: <Icons.globe className="size-3" />,
           },
       ],
       image: "",
-      video: "/videos/devconnect.mp4",
+      video: "/videos/quilly.mp4",
     },
     {
       title: "Event Sphere",
@@ -166,36 +187,6 @@ export const DATA = {
       image: "",
       video: "/videos/smartshelf.mp4 ",
     },
-    {
-      title: "Ecommerce",
-      href: "https://github.com/abhi-yo/ecommerce-frontend",
-      dates: "Feb 2024 - May 2024",
-      active: true,
-      description:
-        "A full-stack ecommerce platform with user authentication, product catalog, shopping cart, and admin dashboard.",
-      technologies: [
-        "TypeScript",
-        "Express",
-        "MongoDB",
-        "React",
-        "SASS",
-        "Docker"
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://ecommerce-frontend-iota-three.vercel.app/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/abhi-yo/ecommerce-frontend",
-          icon: <Icons.github className="size-3" />,
-        }
-      ],
-      image: "",
-      video: "https://i.imgur.com/xN9C6gb.mp4",
-    },
   ],
   Milestones: [
     {
@@ -226,7 +217,7 @@ export const DATA = {
         {
           title: "Live Demo",
           icon: <Icons.globe className="h-4 w-4" />,
-          href: "https://githubresume.vercel.app/resume",
+          href: "https://githubresume.vercel.app/",
         }
       ],
     },
@@ -237,7 +228,7 @@ export const DATA = {
         "A distraction-free writing platform with blockchain-powered copyright protection, built with Next.js and deployed on Polygon.",
       location:"",
       image:
-        "./quily.png",
+        "",
       links: [
         {
           title: "Live Demo",
