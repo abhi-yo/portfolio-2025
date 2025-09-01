@@ -182,6 +182,49 @@ export const DATA = {
   ],
   Milestones: [
     {
+      title: "Reelax",
+      dates: "August, 2025",
+      description:
+        "A chrome extension designed to help users take mindful breaks from continuous scrolling.",
+      location: "",
+      image: "https://i.postimg.cc/QC1DN7T9/reelax.png",
+      links: [
+        {
+          title: "Live Demo",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "https://chromewebstore.google.com/detail/bmmflpdklefgombcahfklcfhkilcaefc?utm_source=item-share-cb",
+        },
+      ],
+    },
+    {
+      title: "Techscope",
+      dates: "August, 2025",
+      description: "Terminal-based tech news reader with smart clustering.",
+      location: "",
+      image: " ",
+      links: [
+        {
+          title: "Live Demo",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "https://www.npmjs.com/package/techscope-cli",
+        },
+      ],
+    },
+    {
+      title: "Date Trust",
+      dates: "August, 2025",
+      description: "AI-powered open-source dating assistant.",
+      location: "",
+      image: "https://i.postimg.cc/xjyFQgkG/icon-512x512.png",
+      links: [
+        {
+          title: "Live Demo",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "https://datetrust.vercel.app/",
+        },
+      ],
+    },
+    {
       title: "Closed Companies",
       dates: "July, 2025",
       description:
