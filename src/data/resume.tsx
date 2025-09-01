@@ -8,7 +8,13 @@ export const DATA = {
   description: "Engineering elegant solutions to complex problems",
   summary:
     "I'm a Software Engineer with a strong foundation in Computer Science and a passion for building scalable tech solutions. My expertise spans full-stack development, system design, and cloud infrastructure. Through hands-on projects and hackathons, I've developed proficiency in building robust applications.",
-  avatarUrl: "https://i.postimg.cc/T5WxdPJ1/icon.png",
+  avatarUrl:
+    "https://asset.cloudinary.com/dy5zurg1q/ee2bb3924e82a7dd420cc5d6d4c6b449",
+  avatarEmbedSrc:
+    "https://player.cloudinary.com/embed/?cloud_name=dy5zurg1q&public_id=grok-video-2cd17f8c-a1a1-43ff-9498-d91e705fed85_ywlvun&profile=cld-default",
+  avatarVideoSrc:
+    "https://res.cloudinary.com/dy5zurg1q/video/upload/f_mp4,vc_auto,ac_none,q_auto/grok-video-2cd17f8c-a1a1-43ff-9498-d91e705fed85_ywlvun.mp4",
+  avatarPosterUrl: "https://i.postimg.cc/3dmhzdwb/me.png",
   skills: [
     "C++",
     "JavaScript",

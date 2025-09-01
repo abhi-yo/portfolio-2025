@@ -30,7 +30,9 @@ export default function Page() {
                 yOffset={8}
                 text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
               />
-              <h1 className="sr-only">{DATA.name} - {DATA.description}</h1>
+              <h1 className="sr-only">
+                {DATA.name} - {DATA.description}
+              </h1>
               <BlurFadeText
                 className="max-w-[600px] md:text-xl"
                 delay={BLUR_FADE_DELAY}
@@ -38,10 +40,44 @@ export default function Page() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-28 border">
-                <AvatarImage alt={`${DATA.name}'s profile picture`} src={DATA.avatarUrl} />
-                <AvatarFallback>{DATA.initials}</AvatarFallback>
-              </Avatar>
+              {DATA.avatarVideoSrc ? (
+                <div className="size-28 overflow-hidden rounded-full border bg-black">
+                  <video
+                    src={DATA.avatarVideoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    controls={false}
+                    poster={DATA.avatarPosterUrl}
+                    className="h-[112px] w-[112px] object-cover"
+                  />
+                </div>
+              ) : DATA.avatarEmbedSrc ? (
+                <div className="size-28 overflow-hidden rounded-full border">
+                  <iframe
+                    src={DATA.avatarEmbedSrc}
+                    width="112"
+                    height="112"
+                    style={{
+                      height: "112px",
+                      width: "112px",
+                      aspectRatio: "1 / 1",
+                    }}
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    frameBorder={0}
+                  />
+                </div>
+              ) : (
+                <Avatar className="size-28 border">
+                  <AvatarImage
+                    alt={`${DATA.name}'s profile picture`}
+                    src={DATA.avatarUrl}
+                  />
+                  <AvatarFallback>{DATA.initials}</AvatarFallback>
+                </Avatar>
+              )}
             </BlurFade>
           </div>
         </div>
@@ -171,7 +207,7 @@ export default function Page() {
                   I like building things
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Through my projects, I learned a lot.
+                  Through my projects, I learned a lot.
                 </p>
               </div>
             </div>
