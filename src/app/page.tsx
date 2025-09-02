@@ -41,39 +41,40 @@ export default function Page() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              {DATA.avatarVideoSrc ? (
-                <div className="size-28 overflow-hidden rounded-full border bg-black">
-                  <AvatarVideo
-                    src={DATA.avatarVideoSrc}
-                    poster={DATA.avatarPosterUrl}
-                    className="h-[112px] w-[112px] object-cover pointer-events-none"
-                  />
-                </div>
-              ) : DATA.avatarEmbedSrc ? (
-                <div className="size-28 overflow-hidden rounded-full border">
-                  <iframe
-                    src={DATA.avatarEmbedSrc}
-                    width="112"
-                    height="112"
-                    style={{
-                      height: "112px",
-                      width: "112px",
-                      aspectRatio: "1 / 1",
-                    }}
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    frameBorder={0}
-                  />
-                </div>
-              ) : (
+              <div className="md:hidden">
                 <Avatar className="size-28 border">
-                  <AvatarImage
-                    alt={`${DATA.name}'s profile picture`}
-                    src={DATA.avatarUrl}
-                  />
+                  <AvatarImage alt={`${DATA.name}'s profile picture`} src={"https://i.postimg.cc/QNkCM2tQ/icon.png"} />
                   <AvatarFallback>{DATA.initials}</AvatarFallback>
                 </Avatar>
-              )}
+              </div>
+              <div className="hidden md:block">
+                {DATA.avatarVideoSrc ? (
+                  <div className="size-28 overflow-hidden rounded-full border bg-black">
+                    <AvatarVideo
+                      src={DATA.avatarVideoSrc}
+                      poster={DATA.avatarPosterUrl}
+                      className="h-[112px] w-[112px] object-cover pointer-events-none"
+                    />
+                  </div>
+                ) : DATA.avatarEmbedSrc ? (
+                  <div className="size-28 overflow-hidden rounded-full border">
+                    <iframe
+                      src={DATA.avatarEmbedSrc}
+                      width="112"
+                      height="112"
+                      style={{ height: "112px", width: "112px", aspectRatio: "1 / 1" }}
+                      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                      allowFullScreen
+                      frameBorder={0}
+                    />
+                  </div>
+                ) : (
+                  <Avatar className="size-28 border">
+                    <AvatarImage alt={`${DATA.name}'s profile picture`} src={DATA.avatarUrl} />
+                    <AvatarFallback>{DATA.initials}</AvatarFallback>
+                  </Avatar>
+                )}
+              </div>
             </BlurFade>
           </div>
         </div>
