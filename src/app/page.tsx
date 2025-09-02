@@ -6,6 +6,7 @@ import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
+import AvatarVideo from "@/components/avatar-video";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import type { Metadata } from "next";
@@ -42,15 +43,10 @@ export default function Page() {
             <BlurFade delay={BLUR_FADE_DELAY}>
               {DATA.avatarVideoSrc ? (
                 <div className="size-28 overflow-hidden rounded-full border bg-black">
-                  <video
+                  <AvatarVideo
                     src={DATA.avatarVideoSrc}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    controls={false}
                     poster={DATA.avatarPosterUrl}
-                    className="h-[112px] w-[112px] object-cover"
+                    className="h-[112px] w-[112px] object-cover pointer-events-none"
                   />
                 </div>
               ) : DATA.avatarEmbedSrc ? (
