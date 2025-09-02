@@ -19,7 +19,6 @@ export default function AvatarVideo({
       autoPlay
       loop
       muted
-      defaultMuted
       playsInline
       preload="auto"
       controls={false}
