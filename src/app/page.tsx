@@ -1,4 +1,3 @@
-import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
@@ -6,7 +5,7 @@ import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
-import AvatarVideo from "@/components/avatar-video";
+import MilestonesList from "@/components/milestones-list";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import type { Metadata } from "next";
@@ -41,40 +40,13 @@ export default function Page() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <div className="md:hidden">
-                <Avatar className="size-28 border">
-                  <AvatarImage alt={`${DATA.name}'s profile picture`} src={"https://i.postimg.cc/QNkCM2tQ/icon.png"} />
-                  <AvatarFallback>{DATA.initials}</AvatarFallback>
-                </Avatar>
-              </div>
-              <div className="hidden md:block">
-                {DATA.avatarVideoSrc ? (
-                  <div className="size-28 overflow-hidden rounded-full border bg-black">
-                    <AvatarVideo
-                      src={DATA.avatarVideoSrc}
-                      poster={DATA.avatarPosterUrl}
-                      className="h-[112px] w-[112px] object-cover pointer-events-none"
-                    />
-                  </div>
-                ) : DATA.avatarEmbedSrc ? (
-                  <div className="size-28 overflow-hidden rounded-full border">
-                    <iframe
-                      src={DATA.avatarEmbedSrc}
-                      width="112"
-                      height="112"
-                      style={{ height: "112px", width: "112px", aspectRatio: "1 / 1" }}
-                      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                      allowFullScreen
-                      frameBorder={0}
-                    />
-                  </div>
-                ) : (
-                  <Avatar className="size-28 border">
-                    <AvatarImage alt={`${DATA.name}'s profile picture`} src={DATA.avatarUrl} />
-                    <AvatarFallback>{DATA.initials}</AvatarFallback>
-                  </Avatar>
-                )}
-              </div>
+              <Avatar className="size-28 border">
+                <AvatarImage
+                  alt={`${DATA.name}'s profile picture`}
+                  src="/icon.png"
+                />
+                <AvatarFallback>{DATA.initials}</AvatarFallback>
+              </Avatar>
             </BlurFade>
           </div>
         </div>
@@ -210,23 +182,10 @@ export default function Page() {
             </div>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-              {DATA.Milestones.map((project, id) => (
-                <BlurFade
-                  key={project.title + project.dates}
-                  delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                >
-                  <HackathonCard
-                    title={project.title}
-                    description={project.description}
-                    location={project.location}
-                    dates={project.dates}
-                    image={project.image}
-                    links={project.links}
-                  />
-                </BlurFade>
-              ))}
-            </ul>
+            <MilestonesList
+              milestones={DATA.Milestones}
+              baseDelay={BLUR_FADE_DELAY * 15}
+            />
           </BlurFade>
         </div>
       </section>
