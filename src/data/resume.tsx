@@ -8,13 +8,6 @@ export const DATA = {
   description: "Engineering elegant solutions to complex problems",
   summary:
     "I'm a Software Engineer with a strong foundation in Computer Science and a passion for building scalable tech solutions. My expertise spans full-stack development, system design, and cloud infrastructure. Through hands-on projects and hackathons, I've developed proficiency in building robust applications.",
-  avatarUrl:
-    "https://asset.cloudinary.com/dy5zurg1q/ee2bb3924e82a7dd420cc5d6d4c6b449",
-  avatarEmbedSrc:
-    "https://player.cloudinary.com/embed/?cloud_name=dy5zurg1q&public_id=grok-video-2cd17f8c-a1a1-43ff-9498-d91e705fed85_ywlvun&profile=cld-default",
-  avatarVideoSrc:
-    "https://res.cloudinary.com/dy5zurg1q/video/upload/f_mp4,vc_auto,ac_none,q_auto/grok-video-2cd17f8c-a1a1-43ff-9498-d91e705fed85_ywlvun.mp4",
-  avatarPosterUrl: "https://i.postimg.cc/3dmhzdwb/me.png",
   skills: [
     "C++",
     "JavaScript",
@@ -53,6 +46,12 @@ export const DATA = {
         icon: Icons.x,
         navbar: true,
       },
+      Peerlist: {
+        name: "Peerlist",
+        url: "https://peerlist.io/akshatbuilds",
+        icon: Icons.peerlist,
+        navbar: true,
+      },
     },
   },
   education: [
@@ -75,16 +74,16 @@ export const DATA = {
   ],
   work: [
     {
-      company: "Freelance",
+      company: "Stealth Startup",
       title: "Full-Stack Developer",
       location: "Remote",
-      type: "Freelance",
-      start: "January 2024",
-      end: "Present",
+      type: "Startup",
+      start: "January 2025",
+      end: "April 2025",
       href: "",
       logoUrl: "https://i.postimg.cc/TyCfQFPd/freelance.png",
       description:
-        "Developing custom web applications and solutions for various clients. Building scalable full-stack applications using modern technologies like Next.js, React, Node.js, and cloud platforms. Collaborating directly with clients to understand requirements and deliver tailored solutions.",
+        "Core full-stack contributor at an early-stage digital media startup, owning system architecture and end-to-end development of scalable, production-ready platform features.",
       badges: [],
     },
   ],
