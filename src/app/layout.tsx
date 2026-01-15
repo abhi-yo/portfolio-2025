@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     type: "website",
     url,
     siteName: DATA.name,
-    locale: 'en_US',
+    locale: "en_US",
     images: [
       {
         url: `${url}/me.png`,
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/icon.png" },
+      { url: "https://i.postimg.cc/fRtkmJxx/icon.png" },
     ],
     shortcut: "/favicon.ico",
     apple: { url: "/apple-icon.png", sizes: "180x180" },
@@ -82,7 +82,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`dark ${fontSans.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`dark ${fontSans.variable}`}
+    >
       <head>
         <Script id="schema-person" type="application/ld+json">
           {JSON.stringify({
@@ -107,7 +111,11 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={true}
+        >
           <TooltipProvider delayDuration={0}>
             {children}
             <Navbar />
