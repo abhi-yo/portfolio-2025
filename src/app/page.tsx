@@ -43,7 +43,7 @@ export default function Page() {
               <Avatar className="size-28 border">
                 <AvatarImage
                   alt={`${DATA.name}'s profile picture`}
-                  src="/icon.png"
+                  src="https://i.postimg.cc/fRtkmJxx/icon.png"
                 />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
