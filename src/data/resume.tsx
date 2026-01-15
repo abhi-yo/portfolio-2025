@@ -187,12 +187,40 @@ export const DATA = {
   ],
   Milestones: [
     {
+      title: "Kolor",
+      dates: "October, 2025",
+      description: "Create and export stunning UI themes for your websites.",
+      location: "",
+      image: "https://i.postimg.cc/LsQy7Qqq/kolor.png",
+      links: [
+        {
+          title: "Live Demo",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "https://kolorai.akshatsingh.xyz",
+        },
+      ],
+    },
+    {
+      title: "Pixelquest",
+      dates: "September, 2025",
+      description: "Explore, collect, and chase high scores.",
+      location: "",
+      image: "https://i.postimg.cc/MKn1PrW0/logo.jpg",
+      links: [
+        {
+          title: "Live Demo",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "https://pixelquests.vercel.app/",
+        },
+      ],
+    },
+    {
       title: "Reelax",
       dates: "August, 2025",
       description:
         "A chrome extension designed to help users take mindful breaks from continuous scrolling.",
       location: "",
-      image: "https://i.postimg.cc/QC1DN7T9/reelax.png",
+      image: "https://i.postimg.cc/d3Hg9Q2c/reelax.png",
       links: [
         {
           title: "Live Demo",
