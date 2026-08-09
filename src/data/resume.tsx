@@ -8,6 +8,22 @@ export const DATA = {
   description: "Engineering elegant solutions to complex problems",
   summary:
     "I'm a Software Engineer with a strong foundation in Computer Science and a passion for building scalable tech solutions. My expertise spans full-stack development, system design, and cloud infrastructure. Through hands-on projects and hackathons, I've developed proficiency in building robust applications.",
+  voice: {
+    hero: "I build things to turn ideas in my head into products people actually want to use.",
+    personality: [
+      "I'm always building some side project, even when I probably should be doing something else.",
+      "I've built everything from a GitHub-powered resume generator to a price comparison platform and an archive of failed startups.",
+      "I care an unreasonable amount about how software looks. Clean interfaces, typography, spacing, and tiny interaction details matter to me.",
+      "I like turning random ideas into working MVPs instead of leaving them as notes in my head.",
+      "I'm obsessed with becoming a better builder, not just collecting technologies.",
+      "I want to eventually build products people genuinely use, rather than spending my career only shipping someone else's requirements.",
+    ],
+    beliefs: [
+      { title: "Build first, overthink later.", copy: "A rough working product teaches you more than weeks of planning." },
+      { title: "Good software should feel obvious.", copy: "If users need to think about how to use something, the product probably isn't finished." },
+      { title: "Taste is a technical skill.", copy: "Engineering gets the product working. Taste is what makes people want to keep using it." },
+    ],
+  },
   skills: [
     "C++",
     "JavaScript",
