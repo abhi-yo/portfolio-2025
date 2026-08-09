@@ -1,220 +1,83 @@
-import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
-import { ProjectCard } from "@/components/project-card";
-import { ResumeCard } from "@/components/resume-card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { DATA } from "@/data/resume";
-import MilestonesList from "@/components/milestones-list";
 import Link from "next/link";
-import Markdown from "react-markdown";
-import type { Metadata } from "next";
+import { ArrowUpRight, ArrowDown, Mail, MapPin } from "lucide-react";
+import { DATA } from "@/data/resume";
+import { Reveal } from "@/components/reveal";
 
-const BLUR_FADE_DELAY = 0.04;
+const featured = DATA.projects.slice(0, 4);
+const archive = DATA.Milestones.slice(0, 10);
 
-export const metadata: Metadata = {
-  title: `${DATA.name} - Portfolio`,
-  description: DATA.summary,
-};
+function ExternalLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link href={href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sm text-foreground transition-colors hover:text-accent">
+      {children} <ArrowUpRight aria-hidden="true" className="size-4" />
+    </Link>
+  );
+}
+
+function SectionLabel({ number, children }: { number: string; children: React.ReactNode }) {
+  return <div className="section-label"><span>{number}</span><span>{children}</span></div>;
+}
+
+function ProjectRow({ project, index }: { project: (typeof featured)[number]; index: number }) {
+  const primaryLink = project.links?.[0]?.href;
+  return (
+    <Reveal className="project-row">
+      <div className="project-copy">
+        <div className="project-meta"><span>0{index + 1}</span><time>{project.dates}</time></div>
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+        <div className="project-tags">{project.technologies?.map((tag) => <span key={tag}>{tag}</span>)}</div>
+        {primaryLink && <ExternalLink href={primaryLink}>View project</ExternalLink>}
+      </div>
+      <Link href={primaryLink || "#"} target={primaryLink ? "_blank" : undefined} rel="noreferrer" className="project-media" aria-label={`Open ${project.title}`}>
+        {project.video ? <video src={project.video.trim()} autoPlay loop muted playsInline preload="metadata" aria-label={`${project.title} preview`} /> : <div className="media-fallback">Project preview</div>}
+        <span className="media-arrow" aria-hidden="true"><ArrowUpRight className="size-5" /></span>
+      </Link>
+    </Reveal>
+  );
+}
 
 export default function Page() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
-      <section id="hero" aria-label="Introduction">
-        <div className="mx-auto w-full max-w-2xl space-y-8">
-          <div className="gap-2 flex justify-between">
-            <div className="flex-col flex flex-1 space-y-1.5">
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-                yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
-              />
-              <h1 className="sr-only">
-                {DATA.name} - {DATA.description}
-              </h1>
-              <BlurFadeText
-                className="max-w-[600px] md:text-xl"
-                delay={BLUR_FADE_DELAY}
-                text={DATA.description}
-              />
-            </div>
-            <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-28 border">
-                <AvatarImage
-                  alt={`${DATA.name}'s profile picture`}
-                  src="https://i.postimg.cc/fRtkmJxx/icon.png"
-                />
-                <AvatarFallback>{DATA.initials}</AvatarFallback>
-              </Avatar>
-            </BlurFade>
-          </div>
-        </div>
+    <main>
+      <header className="site-header">
+        <Link href="#top" className="wordmark" aria-label="Back to top">AS<span>.</span></Link>
+        <nav aria-label="Primary navigation"><Link href="#work">Work</Link><Link href="#about">About</Link><Link href="#timeline">Timeline</Link></nav>
+        <div className="header-status"><span className="status-dot" /> Open to work</div>
+      </header>
+
+      <section id="top" className="hero" aria-labelledby="hero-title">
+        <Reveal><p className="eyebrow">Software engineer / builder / India</p></Reveal>
+        <Reveal delay={0.08}><h1 id="hero-title">Building useful<br /><em>things</em> for the web.</h1></Reveal>
+        <Reveal delay={0.16} className="hero-bottom"><p className="hero-intro">I&apos;m {DATA.name}. I design and engineer calm, capable products — from first idea to the last pixel.</p><div className="hero-aside"><span>Currently shipping from</span><strong><MapPin className="size-4" /> {DATA.location}</strong></div></Reveal>
+        <Reveal delay={0.24} className="scroll-cue"><ArrowDown className="size-4" /> Scroll to explore</Reveal>
       </section>
-      <section id="about" aria-label="About">
-        <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">About</h2>
-        </BlurFade>
-        <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-            {DATA.summary}
-          </Markdown>
-        </BlurFade>
+
+      <section id="work" className="section" aria-labelledby="work-title">
+        <SectionLabel number="01">Selected work</SectionLabel>
+        <Reveal><div className="section-heading"><h2 id="work-title">A few things<br /><em>I&apos;ve made.</em></h2><p>Products, experiments, and systems built with curiosity and an unreasonable attention to detail.</p></div></Reveal>
+        <div className="project-list">{featured.map((project, index) => <ProjectRow key={project.title} project={project} index={index} />)}</div>
       </section>
-      <section id="education" aria-label="Education">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 7}>
-            <h2 className="text-xl font-bold">Education</h2>
-          </BlurFade>
-          {DATA.education.map((education, id) => (
-            <BlurFade
-              key={education.school}
-              delay={BLUR_FADE_DELAY * 8 + id * 0.05}
-            >
-              <ResumeCard
-                key={education.school}
-                href={education.href}
-                logoUrl={education.logoUrl}
-                altText={education.school}
-                title={education.school}
-                subtitle={education.degree}
-                period={`${education.start} - ${education.end}`}
-              />
-            </BlurFade>
-          ))}
-        </div>
+
+      <section id="archive" className="section archive-section" aria-labelledby="archive-title">
+        <SectionLabel number="02">More work</SectionLabel>
+        <Reveal><div className="archive-heading"><h2 id="archive-title">The archive.</h2><p>A running record of side quests, hackathons, and small ideas that made it out into the world.</p></div></Reveal>
+        <div className="archive-list">{archive.map((item, index) => <Reveal key={`${item.title}-${index}`} delay={index * 0.025}><div className="archive-item"><span className="archive-index">{String(index + 1).padStart(2, "0")}</span><div><h3>{item.title}</h3><p>{item.description}</p></div><time>{item.dates.split(",")[0]}</time>{item.links?.[0] && <ExternalLink href={(item.links as readonly { href: string }[])[0].href}>Visit</ExternalLink>}</div></Reveal>)}</div>
       </section>
-      <section id="work" aria-label="Work Experience">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
-          </BlurFade>
-          {DATA.work.map((work, id) => (
-            <BlurFade
-              key={work.company}
-              delay={BLUR_FADE_DELAY * 6 + id * 0.05}
-            >
-              <ResumeCard
-                key={work.company}
-                logoUrl={work.logoUrl}
-                altText={work.company}
-                title={work.company}
-                subtitle={work.title}
-                href={work.href}
-                badges={work.badges}
-                period={`${work.start} - ${work.end}`}
-                description={work.description}
-              />
-            </BlurFade>
-          ))}
-        </div>
+
+      <section id="about" className="section about-section" aria-labelledby="about-title">
+        <SectionLabel number="03">About</SectionLabel>
+        <Reveal><div className="about-grid"><h2 id="about-title">Good software<br /><em>feels inevitable.</em></h2><div><p className="about-lede">{DATA.summary}</p><p>I care about the space where engineering meets taste: thoughtful interfaces, durable systems, and work that earns its place in someone&apos;s day.</p><div className="skill-line"><span>Working with</span><strong>{DATA.skills.slice(0, 9).join(" / ")}</strong></div></div></div></Reveal>
       </section>
-      <section id="skills" aria-label="Skills">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Skills</h2>
-          </BlurFade>
-          <div className="flex flex-wrap gap-1">
-            {DATA.skills.map((skill, id) => (
-              <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <Badge key={skill}>{skill}</Badge>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
+
+      <section id="timeline" className="section" aria-labelledby="timeline-title">
+        <SectionLabel number="04">Timeline</SectionLabel>
+        <Reveal><h2 id="timeline-title" className="timeline-title">Where I&apos;ve been<br /><em>so far.</em></h2></Reveal>
+        <div className="timeline-list">{[...DATA.work.map((item) => ({ ...item, kind: "Work", name: item.company, detail: item.title })), ...DATA.education.map((item) => ({ ...item, kind: "Study", name: item.school, detail: item.degree }))].map((item, index) => <Reveal key={`${item.name}-${index}`} delay={index * 0.08}><div className="timeline-item"><time>{item.start} — {item.end}</time><div><span>{item.kind}</span><h3>{item.name}</h3><p>{item.detail}</p></div></div></Reveal>)}</div>
       </section>
-      <section id="projects" aria-label="Projects">
-        <div className="space-y-12 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 11}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  My Projects
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Check out my latest work
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of projects, from simple
-                  websites to complex web applications. Here are a few of my
-                  favorites.
-                </p>
-              </div>
-            </div>
-          </BlurFade>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {DATA.projects.map((project, id) => (
-              <BlurFade
-                key={project.title}
-                delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-              >
-                <ProjectCard
-                  href={project.href}
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  dates={project.dates}
-                  tags={project.technologies}
-                  image={project.image}
-                  video={project.video}
-                  links={project.links}
-                />
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="hackathons" aria-label="Milestones">
-        <div className="space-y-12 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  Milestones
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  I like building things
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Through my projects, I learned a lot.
-                </p>
-              </div>
-            </div>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <MilestonesList
-              milestones={DATA.Milestones}
-              baseDelay={BLUR_FADE_DELAY * 15}
-            />
-          </BlurFade>
-        </div>
-      </section>
-      <section id="contact" aria-label="Contact">
-        <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 16}>
-            <div className="space-y-3">
-              <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                Contact
-              </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Get in Touch
-              </h2>
-              <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Just shoot me a dm{" "}
-                <Link
-                  href={DATA.contact.social.X.url}
-                  className="text-blue-500 hover:underline"
-                  rel="noopener noreferrer"
-                >
-                  with a direct question on twitter
-                </Link>{" "}
-                and I&apos;ll respond whenever I can. I will ignore all
-                soliciting.
-              </p>
-            </div>
-          </BlurFade>
-        </div>
-      </section>
+
+      <section id="contact" className="contact-section" aria-labelledby="contact-title"><Reveal><SectionLabel number="05">Contact</SectionLabel><h2 id="contact-title">Have a good<br /><em>idea?</em></h2><Link href={`mailto:${DATA.contact.email}`} className="contact-link"><Mail className="size-5" /> {DATA.contact.email} <ArrowUpRight className="size-5" /></Link></Reveal></section>
+      <footer className="site-footer"><span>© {new Date().getFullYear()} {DATA.name}</span><span>{DATA.location}</span><div>{Object.values(DATA.contact.social).filter((social) => social.navbar).map((social) => <Link key={social.name} href={social.url} target="_blank" rel="noreferrer">{social.name}</Link>)}</div></footer>
     </main>
   );
 }
